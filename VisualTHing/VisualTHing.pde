@@ -72,40 +72,7 @@ class Boid {
   }
   
   
-  //alignment
-  PVector align(Boid b[]){
-    
-    float perception =50;
 
-    PVector steer = new PVector(0,0);
-    
-    float total = 0;
-    
-    for(Boid other : b){
-      float dist;
-      dist = PVector.dist(other.position, this.position);
-      
-      if(other != this && dist<perception){
-          steer.add(other.vel);
-          total = total+1;
-       }
-            
-    }
-    
-    if(total >0){
-      steer.div(total);
-      //cR's steering formula desired - vel = new force
-      steer.setMag(maxSpeed);
-      steer.sub(this.vel);
-      
-      steer.limit(maxSteer);
-      return steer;
-   
-    }
-    
-    return steer;   
-    
-  }
   
   void setVel(PVector vel){
     this.vel = vel;
@@ -136,7 +103,12 @@ void setup(){
   size(600,600);
   colorMode(HSB, 255,255,255);
   minim = new Minim(this);
-  player = minim.loadFile("C:/Users/PSeize/Music/HOME-Resonance.mp3");
+  
+  
+  //ADD YOUR MUSIC FILE HERE
+  
+  
+  player = minim.loadFile("PATH/TO/YOUR/MUSIC/FILE");
   player.play();
   stroke(255,255,255);
   
